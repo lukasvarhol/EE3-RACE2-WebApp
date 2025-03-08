@@ -1,0 +1,42 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000.0001">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2e6348;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="250" height="250"/>
+  <path class="cls-1" d="M500,0V250H460V119.8035a79.9346,79.9346,0,0,0-80-79.869H250V0Z" transform="translate(0)"/>
+  <rect class="cls-1" x="-105" y="355" width="250" height="40" transform="translate(395 355) rotate(90)"/>
+  <rect class="cls-1" x="105" y="355" width="250" height="40" transform="translate(605 145) rotate(90)"/>
+  <path class="cls-1" d="M250,250h40a40,40,0,0,0-40-40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M500,0V250h40V119.8035a79.9346,79.9346,0,0,1,80-79.869H750V0Z" transform="translate(0)"/>
+  <path class="cls-1" d="M750,250H710a40,40,0,0,1,40-40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M250,500V250h40V380.1965a79.9346,79.9346,0,0,0,80,79.869H500V500Z" transform="translate(0)"/>
+  <path class="cls-1" d="M500,250H460a40,40,0,0,0,40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M750,500V250H710V380.1965a79.9346,79.9346,0,0,1-80,79.869H500V500Z" transform="translate(0)"/>
+  <path class="cls-1" d="M500,250h40a40,40,0,0,1-40,40Z" transform="translate(0)"/>
+  <rect class="cls-1" y="710" width="250" height="40"/>
+  <rect class="cls-1" y="500" width="250" height="40"/>
+  <rect class="cls-1" x="250" y="500" width="250" height="40"/>
+  <path class="cls-1" d="M250,750h40a40,40,0,0,0-40-40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M500,750V710a40,40,0,0,0-40,40Z" transform="translate(0)"/>
+  <rect class="cls-1" x="605" y="605" width="250" height="40" transform="translate(1355 -105) rotate(90)"/>
+  <path class="cls-1" d="M500,500v40a40,40,0,0,0,40-40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M500,750h40a40,40,0,0,0-40-40Z" transform="translate(0)"/>
+  <rect class="cls-1" x="250" y="960" width="250" height="40" transform="matrix(-1, 0, 0, -1, 750, 1960)"/>
+  <path class="cls-1" d="M500,750H460a40,40,0,0,0,40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M250,750v40a40,40,0,0,0,40-40Z" transform="translate(0)"/>
+  <rect class="cls-1" x="395" y="855" width="250" height="40" transform="translate(-355 1395) rotate(-90)"/>
+  <path class="cls-1" d="M750,1000V960a40,40,0,0,0-40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M750,750H710a40,40,0,0,0,40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M0,1000H40a40.0146,40.0146,0,0,0-11.7157-28.2843A40.0141,40.0141,0,0,0,0,960Z" transform="translate(0)"/>
+  <path class="cls-1" d="M250,1000V960a40,40,0,0,0-40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M250,750H210a40,40,0,0,0,40,40Z" transform="translate(0)"/>
+  <path class="cls-1" d="M0,750v40a40.0146,40.0146,0,0,0,28.2843-11.7157A40.0141,40.0141,0,0,0,40,750Z" transform="translate(0)"/>
+  <path class="cls-1" d="M1000,0V250H960V120a80,80,0,0,0-80-80H870a80,80,0,0,0-80,80V250H750V0Z" transform="translate(0)"/>
+  <path class="cls-1" d="M1000,500H750V460H880a80,80,0,0,0,80-80V370a80,80,0,0,0-80-80H750V250h250Z" transform="translate(0)"/>
+  <path class="cls-1" d="M750,750V500h40V630a80,80,0,0,0,80,80h10a80,80,0,0,0,80-80V500h40V750Z" transform="translate(0)"/>
+  <path class="cls-1" d="M750,750h250v40l-130,0a80,80,0,0,0-80,80v10a80,80,0,0,0,80,80h130v40l-250,0Z" transform="translate(0)"/>
+</svg>

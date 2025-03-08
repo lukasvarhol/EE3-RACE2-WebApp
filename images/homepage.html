@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RACE2 | Home</title>
+    <link rel="icon" href="images/k-u-leuven.svg" sizes="any" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css" media="screen">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Mouse tracking hover effect
+    const handleOnMouseMove = (e) => {
+        const { currentTarget: target } = e;
+        const rect = target.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+
+        target.style.setProperty("--mouse-x", `${x}px`);
+        target.style.setProperty("--mouse-y", `${y}px`);
+    };
+
+    document.querySelectorAll(".off-screen-menu").forEach((card) => {
+        card.addEventListener("mousemove", handleOnMouseMove);
+    });
+
+    // Hamburger menu toggle
+    const hamMenu = document.querySelector(".ham-menu");
+    const offScreenMenu = document.querySelector(".off-screen-menu");
+
+    hamMenu.addEventListener("click", () => {
+        hamMenu.classList.toggle("active");
+        offScreenMenu.classList.toggle("active");
+    });
+
+    // Popup functionality
+    function setupPopup(id, redirectUrl) {
+        let popupNode = document.querySelector(id);
+        if (!popupNode) return null;
+
+        let overlay = popupNode.querySelector(".overlay");
+        let closeBtn = popupNode.querySelector(".cancel-btn");
+        let disconnectBtn = popupNode.querySelector(".disconnect-btn");
+
+        function openPopup() {
+            console.log("Popup should open now");
+            popupNode.classList.add("active");
+            popupNode.classList.remove("closing"); // Ensure it's not in closing state
+        }
+
+        function closePopup() {
+            console.log("Closing popup");
+            popupNode.classList.add("closing"); // Add closing animation class
+            setTimeout(() => {
+                popupNode.classList.remove("active", "closing"); // Remove after animation
+            }, 300); // Matches CSS transition time (300ms)
+        }
+
+        function disconnect() {
+            console.log("Disconnecting... Redirecting");
+            window.location.href = redirectUrl;
+        }
+
+        overlay.addEventListener("click", closePopup);
+        closeBtn.addEventListener("click", closePopup);
+        disconnectBtn.addEventListener("click", disconnect);
+
+        return openPopup;
+    }
+
+    // Initialize popup once
+    const openPopup = setupPopup("#popup", "connect.html");
+
+    // Attach event listener to "Disconnect" menu item
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.id === "open-disconnect-popup" || target.closest("#open-disconnect-popup")) {
+            event.preventDefault();
+            console.log("Disconnect button clicked");
+            if (openPopup) openPopup();
+        }
+    });
+
+    // Generate Random
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.id === "random-track" || target.closest("#random-track")) {
+            event.preventDefault();
+            console.log("Random Track button clicked");
+            generateNewMaze();
+        }
+    });
+
+    // Save Track
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.id === "save-track" || target.closest("#save-track")) {
+            event.preventDefault();
+            console.log("Save Track button clicked");
+            newMaze.saveMaze();
+        }
+    });
+
+    // Load Track
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.id === "load-track" || target.closest("#load-track")) {
+            event.preventDefault();
+            console.log("Load Track button clicked");
+            newMaze.loadMaze();
+        }
+    });
+});
+
+function generateNewMaze() {
+            newMaze = new Maze(6, 8);
+        }
+
+    </script>
+</head>
+<body>
+
+
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>Disconnect?</h2>
+            <p>Are you sure you want to disconnect?</p>
+            <div class="controls">
+                <button class="cancel-btn">Cancel</button>
+                <button class="disconnect-btn">Disconnect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Off-Screen Menu -->
+    <div class="off-screen-menu">
+        <ul>
+            <li id="random-track">Random Track</li>
+            <br>
+            <li id="save-track">Save Track</li>
+            <br>
+            <li id="load-track">Load Track</li>
+            <br>
+            <li id="open-disconnect-popup">Disconnect</li>
+        </ul>
+    </div>
+
+    <!-- Hamburger Menu (Always Visible) -->
+    <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="maze" class="maze-container"></div>
+    <script src="script.js"></script>
+
+
+
+</body>
+</html>

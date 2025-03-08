@@ -1,0 +1,315 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2e6348;
+    /*background-image: linear-gradient(#ddd 0.000001px, transparent 1px), linear-gradient(90deg, #ddd 0.000001px, transparent 1px); */
+    background-size: var(--cell-size) var(--cell-size); /* Ensure the background grid matches the cell size */
+    background-position: 0 0;
+}
+
+.maze-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.maze-container svg {
+    max-width: 100%; /* Ensure SVG doesn't overflow */
+    max-height: 100%; /* Ensure SVG doesn't overflow */
+}
+
+.wall-group {
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.7));
+}
+
+.starting-tile {
+    fill: #222;
+}
+
+.floor-tile {
+    stroke: #ccc;
+    stroke-width: 1px;
+    fill: #ddd;
+    pointer-events: none;
+}
+
+
+
+.wall-tile {
+    stroke: #ddd;
+    stroke-width: 1px;
+    pointer-events: none;
+}
+
+.barcode-tile {
+    transition: stroke 0.3s ease;
+    cursor: pointer;
+}
+
+.barcode-tile:hover {
+    stroke: #ddd; /* Change the border color on hover */
+    stroke-width: 1px;
+    
+}
+
+.barcode-popup {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(0.85);
+    background: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: #222;
+    font-size: 24px;
+    box-shadow: 0px 10px 10px 3px rgba(0, 0, 0, 0.05);
+
+}
+.barcode-popup-content {
+    position: relative;
+    
+}
+
+
+.current-tile {
+    stroke: red !important;
+    stroke-width: 5px; /* Make the highlight more prominent */
+}
+
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Box */
+.box {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Higher z-index to place it above the maze */
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.popup .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+
+.popup .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 95%;
+    max-width: 350px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    opacity: 0;
+    box-shadow: 0px 2px 2px 5px rgba(0, 0, 0, 0.05);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.popup .popup-content h2 {
+    margin: 10px 0;
+    font-size: 30px;
+    color: #111111;
+    text-align: center;
+}
+
+.popup .popup-content p {
+    margin: 15px 0;
+    color: #222;
+    font-size: 16px;
+    text-align: center;
+}
+
+.popup .popup-content .controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0;
+}
+
+.popup .popup-content .controls button {
+    padding: 15px 30px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup .popup-content .controls .cancel-btn {
+    background: #222;
+    color: white;
+}
+
+.popup .popup-content .controls .disconnect-btn {
+    background: #ddd;
+    color: black;
+}
+
+/* Open Popup */
+.popup.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup.active .overlay {
+    opacity: 1;
+}
+
+li {
+    cursor: pointer;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.popup.active .popup-content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Close Popup */
+.popup.closing {
+    opacity: 0;
+}
+
+.popup.closing .overlay {
+    opacity: 0;
+}
+
+.popup.closing .popup-content {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0;
+}
+
+/* Hamburger Menu */
+.ham-menu {
+    height: 35px;
+    width: 35px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Higher z-index to place it above the maze */
+}
+
+/* Hamburger Lines */
+.ham-menu span {
+    height: 4px;
+    width: 100%;
+    background-color: #30744a;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s ease-in-out;
+    z-index: 100;
+}
+
+.ham-menu span:nth-child(1) {
+    top: 25%;
+}
+
+.ham-menu span:nth-child(3) {
+    top: 75%;
+}
+
+/* Active State */
+.ham-menu.active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ham-menu.active span:nth-child(2) {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ham-menu.active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+/* Off-Screen Sliding Menu */
+.off-screen-menu {
+    background-color: rgba(255, 255, 255, 0.23);
+    height: 100vh;
+    width: 100%;
+    max-width: 320px;
+    position: fixed;
+    top: 0;
+    left: -220px; /* Initially hidden */
+    color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0px 10px 10px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    transition: left 0.2s ease-in-out, color 0.2s ease-in-out;
+    z-index: 99; /* Higher z-index to place it above the maze */
+}
+
+/* Show Menu when Active */
+.off-screen-menu.active {
+    left: -20px;
+    color: #ddd; /* Ensures text is visible */
+}
+
+/* Hover Effect */
+.off-screen-menu::before {
+    background: radial-gradient(
+        1000px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.2),
+        transparent 40%
+    );
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 500ms;
+    pointer-events: none;
+}
+
+.off-screen-menu:hover::before {
+    opacity: 1;
+}

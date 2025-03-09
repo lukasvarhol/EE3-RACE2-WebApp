@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RACE2 | Home</title>
-    <link rel="icon" href="images/k-u-leuven.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="images/logo-01.svg" sizes="any" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css" media="screen">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
     <script>
@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
         hamMenu.classList.toggle("active");
         offScreenMenu.classList.toggle("active");
     });
+
+    // Function to close the off-screen menu
+    const closeOffScreenMenu = () => {
+        hamMenu.classList.remove("active");
+        offScreenMenu.classList.remove("active");
+    };
 
     // Popup functionality
     function setupPopup(id, redirectUrl) {
@@ -110,6 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
             newMaze.loadMaze();
         }
     });
+
+    // Close the off-screen menu when an item is clicked
+    document.querySelectorAll('.off-screen-menu li').forEach(item => {
+        item.addEventListener('click', () => {
+            closeOffScreenMenu();
+        });
+    });
 });
 
 function generateNewMaze() {
@@ -119,8 +132,8 @@ function generateNewMaze() {
     </script>
 </head>
 <body>
-
-
+    
+        
 
     <!-- Popup -->
     <div class="popup" id="popup">
@@ -155,10 +168,15 @@ function generateNewMaze() {
         <span></span>
     </div>
 
-    <div id="maze" class="maze-container"></div>
+    <div id="maze" class="maze-container">
+        
+    </div>
+    <div>
+        <img src="images/logo-01.svg" class="logo" alt="RACE2 Logo" type="image/svg+xml">
+    </div>
+    
+
     <script src="script.js"></script>
-
-
 
 </body>
 </html>

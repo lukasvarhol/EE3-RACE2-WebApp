@@ -19,6 +19,15 @@ html, body {
     overflow: hidden; /* Prevent overflow */
 }
 
+.logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 6%;
+    height: auto;
+    z-index: 100; /* Higher z-index to place it above the maze */
+}
+
 .maze-container svg {
     max-width: 100%; /* Ensure SVG doesn't overflow */
     max-height: 100%; /* Ensure SVG doesn't overflow */
@@ -28,8 +37,8 @@ html, body {
     filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.7));
 }
 
-.starting-tile {
-    fill: #222;
+.start-tile {
+    fill: #00ff00; /* Replace with desired color */
 }
 
 .floor-tile {
@@ -228,7 +237,7 @@ li {
 .ham-menu span {
     height: 4px;
     width: 100%;
-    background-color: #30744a;
+    background-color: #2e6348;
     border-radius: 25px;
     position: absolute;
     top: 50%;
